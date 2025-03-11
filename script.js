@@ -41,7 +41,6 @@ function calculateResult() {
   try {
     let exp = currentDisplay.innerText.split(/([-+*/])/)
     let length = exp.length;
-    console.log(exp)
     if(exp[0]==='-'){
       exp[1]*= -1
     }
@@ -51,28 +50,24 @@ function calculateResult() {
         exp = exp.filter((_,index)=>index !== i && index !== i + 1)
       }
     }
-    console.log(exp)
     for (i = 0; i < length; i++) {
       if (exp[i]==='*') {
         exp[i-1]*=exp[i+1];
         exp = exp.filter((_,index)=>index !== i && index !== i + 1)
       }
     }
-    console.log(exp)
     for (i = 0; i < length; i++) {
       if (exp[i]==='-') {
         exp[i-1]-=exp[i+1];
         exp = exp.filter((_,index)=>index !== i && index !== i + 1)
       }
     }
-    console.log(exp)
     for (i = 0; i < length; i++) {
       if (exp[i]==='+') {
         exp[i-1]=Number(exp[i-1]) + Number(exp[i+1]);
         exp = exp.filter((_,index)=>index !== i && index !== i + 1)
       }
     }
-    console.log(exp)
     const result = exp[0]
     historyDisplay.innerText = currentDisplay.innerText + ' =';
     currentDisplay.innerText = result;
